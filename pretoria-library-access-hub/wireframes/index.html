@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home | Pretoria Public Library — Wireframe</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <!-- WIREFRAME 1 of 3: Landing / Discovery page. -->
+
+  <!-- First focusable element on the page: bypasses the header (WCAG 2.4.1). -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <p class="site-title">
+        <a href="index.html">Pretoria Public Library
+          <span>Adaptive Learning &amp; Resource Portal</span>
+        </a>
+      </p>
+      <nav class="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="search.html">Find resources</a></li>
+          <li><a href="booking.html">Book or register</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-grid">
+    <main id="main-content" tabindex="-1">
+      <section class="hero" aria-labelledby="hero-heading">
+        <h1 id="hero-heading">Learn, borrow and connect — on your terms</h1>
+        <p>Search free courses, digital archives, community events and study rooms. Every page works with a keyboard and screen reader.</p>
+        <p><a class="button" href="search.html">Find resources</a></p>
+        <p class="wf-note">ANNOTATION: Only one &lt;h1&gt; per page. Primary call to action is a real link (navigates), not a button.</p>
+      </section>
+
+      <section aria-labelledby="services-heading">
+        <h2 id="services-heading">What you can do here</h2>
+        <ul class="card-grid">
+          <li>
+            <article class="card">
+              <h3>Enrol in a course</h3>
+              <p>Digital skills, languages and job readiness — online or in person.</p>
+              <a href="search.html#courses">Browse courses</a>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <h3>Reserve a study room</h3>
+              <p>Quiet rooms with screen-reader-equipped PCs and step-free access.</p>
+              <a href="search.html#rooms">Browse study rooms</a>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <h3>Explore digital archives</h3>
+              <p>Local history photos, oral histories and newspapers with transcripts.</p>
+              <a href="search.html#archives">Browse archives</a>
+            </article>
+          </li>
+          <li>
+            <article class="card">
+              <h3>Register for events</h3>
+              <p>Author talks, audio-described film screenings and family workshops.</p>
+              <a href="search.html#events">Browse events</a>
+            </article>
+          </li>
+        </ul>
+        <p class="wf-note">ANNOTATION: Cards are list items so screen readers announce "list, 4 items". Link text is unique and descriptive out of context (WCAG 2.4.4).</p>
+      </section>
+
+      <section aria-labelledby="week-heading">
+        <h2 id="week-heading">This week at the library</h2>
+        <div class="wf-placeholder" role="img" aria-label="Placeholder: photograph of the library reading room">[Image placeholder — reading room photo, alt text required]</div>
+        <ul>
+          <li><a href="booking.html">Digital Skills for Work — Tuesday, 18:00</a></li>
+          <li><a href="booking.html">Audio-Described Film Night — Friday, 18:30</a></li>
+          <li><a href="booking.html">Family Coding Club — Saturday, 10:00</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <aside class="sidebar" aria-labelledby="hours-heading">
+      <h2 id="hours-heading">Opening hours &amp; access</h2>
+      <dl class="meta">
+        <dt>Mon–Fri</dt><dd>08:00–19:00</dd>
+        <dt>Saturday</dt><dd>09:00–14:00</dd>
+        <dt>Sunday</dt><dd>Closed</dd>
+      </dl>
+      <p>Step-free entrance on Oak Street. Hearing loop at the front desk. Guide dogs welcome.</p>
+      <p class="wf-note">ANNOTATION: &lt;aside&gt; is a sibling of &lt;main&gt; (not nested) so it is a top-level complementary landmark.</p>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>Pretoria Public Library</strong> · 12 Oak Street, Pretoria · 010 555 0143</p>
+      <ul>
+        <li><a href="index.html">Accessibility statement</a></li>
+        <li><a href="index.html">Contact us</a></li>
+        <li><a href="index.html">Privacy</a></li>
+      </ul>
+      <p>A service of the City of Tshwane Metropolitan Municipality. Wireframe for ticket MD-2026-0143.</p>
+    </div>
+  </footer>
+</body>
+</html>

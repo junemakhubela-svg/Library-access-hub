@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book or register | Pretoria Public Library — Wireframe</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <!-- WIREFRAME 3 of 3: Detail / Booking Form page. Static HTML + CSS only (no JavaScript).
+       The form is shown in its ERROR STATE to document the validation architecture. -->
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <p class="site-title">
+        <a href="index.html">Pretoria Public Library
+          <span>Adaptive Learning &amp; Resource Portal</span>
+        </a>
+      </p>
+      <nav class="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="search.html">Find resources</a></li>
+          <li><a href="booking.html" aria-current="page">Book or register</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-grid">
+    <main id="main-content" tabindex="-1">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="search.html">Find resources</a></li>
+          <li><a href="booking.html" aria-current="page">Book or register</a></li>
+        </ol>
+      </nav>
+
+      <h1>Book or register</h1>
+
+      <article class="card" aria-labelledby="detail-heading">
+        <span class="badge">Course</span>
+        <h2 id="detail-heading">Digital Skills for Work</h2>
+        <dl class="meta">
+          <dt>Format</dt><dd>In person</dd>
+          <dt>When</dt><dd>Tuesdays, 18:00–20:00 (6 weeks)</dd>
+          <dt>Where</dt><dd>Learning Lab, Level 1</dd>
+          <dt>Places</dt><dd>8 remaining</dd>
+        </dl>
+        <p>Learn email, word processing and online job applications. Each workstation has NVDA, JAWS and ZoomText installed.</p>
+        <h3>Accessibility features</h3>
+        <ul>
+          <li>Screen-reader tested materials</li>
+          <li>Step-free access</li>
+          <li>Hearing loop</li>
+        </ul>
+      </article>
+
+      <section aria-labelledby="form-heading">
+        <h2 id="form-heading">Your booking details</h2>
+
+        <!-- ERROR SUMMARY: receives focus on failed submit in the React build (tabindex="-1"). -->
+        <div class="error-summary" tabindex="-1" aria-labelledby="error-summary-heading">
+          <h3 id="error-summary-heading">There is a problem with your booking</h3>
+          <ul>
+            <li><a href="#cardNumber">Your library card number must be exactly 8 digits.</a></li>
+            <li><a href="#timeSlot-morning">Choose a time slot.</a></li>
+          </ul>
+        </div>
+        <p class="wf-note">ANNOTATION: Error summary links jump to the field. Each invalid field has aria-invalid="true" and its error id appended to aria-describedby.</p>
+
+        <form action="booking.html" method="post" novalidate>
+          <p>All fields are required unless marked optional.</p>
+
+          <div class="form-field">
+            <label for="fullName">Full name</label>
+            <input type="text" id="fullName" name="fullName" autocomplete="name" value="Thandiwe Mokoena" aria-invalid="false">
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email address</label>
+            <span class="hint" id="email-hint">We'll send your confirmation here.</span>
+            <input type="email" id="email" name="email" autocomplete="email" aria-describedby="email-hint" value="thandiwe@example.com" aria-invalid="false">
+          </div>
+
+          <div class="form-field">
+            <label for="cardNumber">Library card number</label>
+            <span class="hint" id="cardNumber-hint">8 digits, printed on the back of your card.</span>
+            <p class="field-error" id="cardNumber-error"><span class="visually-hidden">Error: </span>Your library card number must be exactly 8 digits.</p>
+            <input type="text" id="cardNumber" name="cardNumber" inputmode="numeric" autocomplete="off" aria-describedby="cardNumber-hint cardNumber-error" aria-invalid="true" value="1234567">
+          </div>
+
+          <div class="form-field">
+            <label for="resource">What would you like to book?</label>
+            <select id="resource" name="resource" aria-invalid="false">
+              <optgroup label="Courses">
+                <option value="digital-skills" selected>Digital Skills for Work</option>
+                <option value="isizulu-beginners">isiZulu for Beginners</option>
+              </optgroup>
+              <optgroup label="Study rooms">
+                <option value="room-a">Quiet Study Room A</option>
+                <option value="room-b">Group Study Room B</option>
+              </optgroup>
+              <optgroup label="Events">
+                <option value="film-night">Audio-Described Film Night</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="date">Preferred date</label>
+            <span class="hint" id="date-hint">Today or up to 90 days ahead. You can type the date as YYYY-MM-DD.</span>
+            <input type="date" id="date" name="date" aria-describedby="date-hint" value="2026-10-20" aria-invalid="false">
+          </div>
+
+          <fieldset class="form-field" aria-describedby="timeSlot-error">
+            <legend>Time slot</legend>
+            <p class="field-error" id="timeSlot-error"><span class="visually-hidden">Error: </span>Choose a time slot.</p>
+            <label class="choice"><input type="radio" id="timeSlot-morning" name="timeSlot" value="morning"> Morning (09:00–12:00)</label>
+            <label class="choice"><input type="radio" id="timeSlot-afternoon" name="timeSlot" value="afternoon"> Afternoon (12:00–15:00)</label>
+            <label class="choice"><input type="radio" id="timeSlot-evening" name="timeSlot" value="evening"> Evening (15:00–19:00)</label>
+          </fieldset>
+
+          <div class="form-field">
+            <label for="needs">Access requirements (optional)</label>
+            <span class="hint" id="needs-hint">Tell us anything that helps us prepare, such as a guide dog or large-print handouts. Maximum 500 characters.</span>
+            <textarea id="needs" name="needs" aria-describedby="needs-hint"></textarea>
+          </div>
+
+          <div class="form-field">
+            <label class="choice"><input type="checkbox" id="consent" name="consent" checked> I agree to the library booking terms</label>
+          </div>
+
+          <button class="button" type="submit">Confirm booking</button>
+        </form>
+      </section>
+    </main>
+
+    <aside class="sidebar" aria-labelledby="help-heading">
+      <h2 id="help-heading">Need help booking?</h2>
+      <p>Call <a href="tel:+27105550143">010 555 0143</a> or visit the front desk. Staff can complete the booking with you.</p>
+      <p>No time limit applies to this form. Your answers are not lost if you leave a field.</p>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>Pretoria Public Library</strong> · 12 Oak Street, Pretoria · 010 555 0143</p>
+      <ul>
+        <li><a href="index.html">Accessibility statement</a></li>
+        <li><a href="index.html">Contact us</a></li>
+        <li><a href="index.html">Privacy</a></li>
+      </ul>
+      <p>A service of the City of Tshwane Metropolitan Municipality. Wireframe for ticket MD-2026-0143.</p>
+    </div>
+  </footer>
+</body>
+</html>

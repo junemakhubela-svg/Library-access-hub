@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find resources | Pretoria Public Library — Wireframe</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <!-- WIREFRAME 2 of 3: Resource Listing / Search page. Static HTML + CSS only (no JavaScript).
+       Filtering behaviour is simulated with a GET form; the React prototype adds live updates. -->
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <p class="site-title">
+        <a href="index.html">Pretoria Public Library
+          <span>Adaptive Learning &amp; Resource Portal</span>
+        </a>
+      </p>
+      <nav class="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="search.html" aria-current="page">Find resources</a></li>
+          <li><a href="booking.html">Book or register</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-grid page-grid--filters">
+    <!-- Filters come first in the DOM so keyboard order matches visual order (left column). -->
+    <aside class="sidebar" aria-labelledby="filters-heading">
+      <h2 id="filters-heading">Filter resources</h2>
+      <form action="search.html" method="get" aria-labelledby="filters-heading">
+        <div class="form-field">
+          <label for="q">Search by keyword</label>
+          <span class="hint" id="q-hint">For example: "coding", "history" or "quiet room"</span>
+          <input type="search" id="q" name="q" aria-describedby="q-hint">
+        </div>
+
+        <!-- Native <details>/<summary> gives a keyboard-operable accordion with
+             expanded/collapsed state exposed to AT, without any JavaScript. -->
+        <details class="filter-group" open>
+          <summary>Category</summary>
+          <fieldset>
+            <legend class="visually-hidden">Category</legend>
+            <label class="choice"><input type="radio" name="category" value="all" checked> All resources</label>
+            <label class="choice"><input type="radio" name="category" value="courses"> Courses</label>
+            <label class="choice"><input type="radio" name="category" value="archives"> Digital archives</label>
+            <label class="choice"><input type="radio" name="category" value="events"> Events</label>
+            <label class="choice"><input type="radio" name="category" value="rooms"> Study rooms</label>
+          </fieldset>
+        </details>
+
+        <details class="filter-group">
+          <summary>Format</summary>
+          <fieldset>
+            <legend class="visually-hidden">Format</legend>
+            <label class="choice"><input type="checkbox" name="format" value="online"> Online</label>
+            <label class="choice"><input type="checkbox" name="format" value="in-person"> In person</label>
+          </fieldset>
+        </details>
+
+        <details class="filter-group">
+          <summary>Accessibility features</summary>
+          <fieldset>
+            <legend class="visually-hidden">Accessibility features</legend>
+            <label class="choice"><input type="checkbox" name="feature" value="captioned"> Captions available</label>
+            <label class="choice"><input type="checkbox" name="feature" value="step-free"> Step-free access</label>
+            <label class="choice"><input type="checkbox" name="feature" value="screen-reader"> Screen-reader tested</label>
+            <label class="choice"><input type="checkbox" name="feature" value="hearing-loop"> Hearing loop</label>
+          </fieldset>
+        </details>
+
+        <p><button class="button" type="submit">Apply filters</button></p>
+        <p><a href="search.html">Clear all filters</a></p>
+      </form>
+      <p class="wf-note">ANNOTATION: In React the "Category" radios become toggle buttons with aria-pressed, and "More filters" becomes a button with aria-expanded + aria-controls.</p>
+    </aside>
+
+    <main id="main-content" tabindex="-1">
+      <h1>Find learning resources</h1>
+
+      <!-- In the React build this paragraph is role="status" aria-live="polite". -->
+      <p><strong>12 of 12 resources shown</strong></p>
+      <p class="wf-note">ANNOTATION: Result count becomes a polite live region so filter changes are announced without moving focus (WCAG 4.1.3).</p>
+
+      <section aria-labelledby="results-heading">
+        <h2 id="results-heading" class="visually-hidden">Results</h2>
+        <ul class="card-grid">
+          <li id="courses">
+            <article class="card">
+              <span class="badge">Course</span>
+              <h3>Digital Skills for Work</h3>
+              <dl class="meta">
+                <dt>Format</dt><dd>In person</dd>
+                <dt>When</dt><dd>Tuesdays, 18:00–20:00</dd>
+                <dt>Where</dt><dd>Learning Lab, Level 1</dd>
+              </dl>
+              <p>Email, documents and online job applications in a six-week course.</p>
+              <a class="button button--secondary" href="booking.html">View details<span class="visually-hidden"> for Digital Skills for Work</span></a>
+            </article>
+          </li>
+          <li id="rooms">
+            <article class="card">
+              <span class="badge">Study room</span>
+              <h3>Quiet Study Room A</h3>
+              <dl class="meta">
+                <dt>Format</dt><dd>In person</dd>
+                <dt>When</dt><dd>Bookable daily, 2-hour slots</dd>
+                <dt>Where</dt><dd>Level 2, step-free lift</dd>
+              </dl>
+              <p>Seats four. Includes a PC with NVDA and JAWS installed.</p>
+              <a class="button button--secondary" href="booking.html">View details<span class="visually-hidden"> for Quiet Study Room A</span></a>
+            </article>
+          </li>
+          <li id="archives">
+            <article class="card">
+              <span class="badge">Digital archive</span>
+              <h3>Pretoria Oral Histories</h3>
+              <dl class="meta">
+                <dt>Format</dt><dd>Online</dd>
+                <dt>When</dt><dd>Available 24/7</dd>
+                <dt>Where</dt><dd>Online collection</dd>
+              </dl>
+              <p>120 recorded interviews with full text transcripts.</p>
+              <a class="button button--secondary" href="booking.html">View details<span class="visually-hidden"> for Pretoria Oral Histories</span></a>
+            </article>
+          </li>
+          <li id="events">
+            <article class="card">
+              <span class="badge">Event</span>
+              <h3>Audio-Described Film Night</h3>
+              <dl class="meta">
+                <dt>Format</dt><dd>In person</dd>
+                <dt>When</dt><dd>Friday, 18:30</dd>
+                <dt>Where</dt><dd>Community Hall</dd>
+              </dl>
+              <p>A monthly screening with live audio description and a hearing loop.</p>
+              <a class="button button--secondary" href="booking.html">View details<span class="visually-hidden"> for Audio-Described Film Night</span></a>
+            </article>
+          </li>
+        </ul>
+        <p class="wf-note">ANNOTATION: "View details" has a visually hidden suffix so every link is unique in NVDA's Elements List, while the visible text stays at the start of the accessible name (WCAG 2.5.3).</p>
+      </section>
+
+      <nav class="pagination" aria-label="Pagination">
+        <ul>
+          <li><a href="search.html" aria-current="page">Page 1</a></li>
+          <li><a href="search.html">Page 2</a></li>
+          <li><a href="search.html">Next page</a></li>
+        </ul>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>Pretoria Public Library</strong> · 12 Oak Street, Pretoria · 010 555 0143</p>
+      <ul>
+        <li><a href="index.html">Accessibility statement</a></li>
+        <li><a href="index.html">Contact us</a></li>
+        <li><a href="index.html">Privacy</a></li>
+      </ul>
+      <p>A service of the City of Tshwane Metropolitan Municipality. Wireframe for ticket MD-2026-0143.</p>
+    </div>
+  </footer>
+</body>
+</html>

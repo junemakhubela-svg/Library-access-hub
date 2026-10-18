@@ -1,0 +1,19 @@
+# Deployment configuration (Netlify). Vercel and GitHub Pages also work: build = `npm run build`, output = `dist`.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Hash-based routing means every view is served from index.html; this rule is a safety net for direct links.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
